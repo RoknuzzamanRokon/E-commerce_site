@@ -3,7 +3,7 @@ import {Container, Row, Col} from 'react-bootstrap'
 
 function Footer() {
   return (
-    <Container>
+    <Container style={{ marginTop: '20px' }}>
       <Row>
         <Col className='text-center'>
         Copyright &copy; ProShop
