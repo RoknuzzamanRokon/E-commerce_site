@@ -10,6 +10,7 @@ markdown = "*"
 django-filter = "*"
 django-cors-headers = "*"
 django-crispy-forms = "*"
+pillow = "*"
 
 [dev-packages]
 
