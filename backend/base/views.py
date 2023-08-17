@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response
 
+from .serializer import ProductSerializer
 from .models import Product
 from .products import products
 
