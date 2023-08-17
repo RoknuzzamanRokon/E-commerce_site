@@ -19,7 +19,7 @@ function ProductScreen({match}) {
     }
 
     fetchProduct()
-  }, [])
+  }, )
 
   return (
     <div> 
@@ -76,7 +76,7 @@ function ProductScreen({match}) {
               </ListGroup.Item>
 
               <ListGroup.Item className="d-flex justify-content-center">
-                <Button className='btn-btn btn-dark btn-sm rounded-1 my-3' disabled={product.countInStock == 0} type='button'>Add to Cart</Button>
+                <Button className='btn-btn btn-dark btn-sm rounded-1 my-3' disabled={product.countInStock === 0} type='button'>Add to Cart</Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>         
