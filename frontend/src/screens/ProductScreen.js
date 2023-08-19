@@ -9,11 +9,19 @@ import { listProductsDetails } from '../actions/productActions'
 
 
 function ProductScreen({match}) {
+
+  // const { id } = useParams();
   // const productId = match.params.id;
   
   // const [product, setProduct] = useState([])
 
-  // const { id } = useParams();
+
+  // const dispatch = useDispatch()
+
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
 
   useEffect(() => {
@@ -24,9 +32,10 @@ function ProductScreen({match}) {
 
     // fetchProduct()
 
-  },[] )
+    dispatch(listProductsDetails(id))
 
-  let product = {}
+  },[dispatch, id] )
+
 
   return (
     <div> 
