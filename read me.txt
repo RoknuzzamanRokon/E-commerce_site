@@ -1,0 +1,10 @@
+1. spinner 
+A spinner is used for displaying the loading state of a page or a section in our projects.It is basically used when the page is waiting 
+for asynchronous data or during a rendering process,an appropriate loading animation can effectively mitigate users' uneasiness.
+
+
+2.
+
+
+
+
