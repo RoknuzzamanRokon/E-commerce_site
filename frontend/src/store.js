@@ -25,11 +25,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { productListReducer, productDetailsReducer } from './reducers/productReducers';
+import { cartReducer } from './reducers/cartReducers';
+
 
 const store = configureStore({
   reducer: {
     productList: productListReducer,
     productDetails: productDetailsReducer,
+    cart: cartReducer,
   },
   middleware: [thunk],
   devTools: process.env.NODE_ENV !== 'production', // Enable devtools only in non-production environment
