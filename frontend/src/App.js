@@ -20,6 +20,7 @@ function App() {
             <Route path='/' Component={HomeScreen} exact />
             <Route path='/product/:id' Component={ProductScreen} />
             <Route path='/cart/:id' Component={CartScreen} />
+            <Route path='/cart' Component={CartScreen} />
           </Routes>
         </Container>   
       </main>
