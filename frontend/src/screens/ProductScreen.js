@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate  } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Button, Card, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProductsDetails } from '../actions/productActions'
 
 
-function ProductScreen({match}) {
+function ProductScreen({match, history}) {
   const [qty, setQty] = useState(1)
   
 
@@ -27,6 +27,8 @@ function ProductScreen({match}) {
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
 
+    const navigate = useNavigate();
+
 
     useEffect(() => {
       // async function fetchProduct(){
@@ -37,9 +39,18 @@ function ProductScreen({match}) {
       // fetchProduct()
 
       dispatch(listProductsDetails(id))
+      console.log(qty)
 
-    },[dispatch, id] )
+    },[dispatch, match, qty, id] )
+    
 
+    // const addToCartHandler = () => {
+    //   history.push(`/cart/${id}?qty=${qty}`)
+    // }
+
+    const addToCartHandler = () => {
+      navigate(`/cart/${id}?qty=${qty}`); 
+    };
 
     return (
       <div> 
@@ -128,7 +139,7 @@ function ProductScreen({match}) {
                         )}
 
                         <ListGroup.Item className="d-flex justify-content-center">
-                          <Button className='btn-btn btn-dark btn-sm rounded-1 my-3' disabled={product.countInStock === 0} type='button'>Add to Cart</Button>
+                          <Button onClick={addToCartHandler} className='btn-btn btn-dark btn-sm rounded-1 my-3' disabled={product.countInStock === 0} type='button'>Add to Cart</Button>
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>         
