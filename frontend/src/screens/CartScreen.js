@@ -9,5 +9,4 @@ CartScreen = () => {
   )
 }
 
-export default 
-CartScreen
+export default CartScreen
