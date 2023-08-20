@@ -25,6 +25,14 @@ function CartScreen({ match }) {
 
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if (productID) {
+      dispatch(addToCart(productID, qty))
+    }
+  },[dispatch,productID,qty])
+
+
+
   return (
     <div>
         CartScreen
