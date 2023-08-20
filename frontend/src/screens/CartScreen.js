@@ -23,7 +23,7 @@ function CartScreen({ match }) {
 
   // console.log('qty:', qty);
 
-  
+  const dispatch = useDispatch()
 
   return (
     <div>
