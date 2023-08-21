@@ -35,6 +35,9 @@ function CartScreen({ match }) {
     }
   },[dispatch,productID,qty])
 
+  const removeFromCartHandler = (id) => {
+    console.log('remove:', id)
+  }
 
 
   return (
@@ -48,8 +51,8 @@ function CartScreen({ match }) {
         ) : (
           <ListGroup variant='flash'>
               {cartItems.map(item => (
-                <ListGroup.Item key={item.product}>
-                  <Row>
+                <ListGroup.Item key={item.product} >
+                  <Row >
                     <Col md={2}>
                       <Image src={item.image} alt='item.name' fluid rounded/>
                     </Col>
@@ -61,7 +64,6 @@ function CartScreen({ match }) {
                     <Col md={2}>
                       ${item.price}
                     </Col>
-
                     
                     <Col md={3}>
                       <Form.Control
@@ -80,7 +82,11 @@ function CartScreen({ match }) {
                     </Col>
 
                     <Col md={1}>
-                      <Button type='button' variant='light'>
+                      <Button 
+                      type='button' 
+                      variant='light'
+                      onClick={removeFromCartHandler(item.product)}>
+
                         <i className='fas fa-trash'> </i>
 
                       </Button>
@@ -89,12 +95,12 @@ function CartScreen({ match }) {
                   </Row>
                 </ListGroup.Item>
               ))}
-          </ListGroup>
-        )}
-      </Col>
+           </ListGroup>
+         )}
+        </Col>
 
       <Col md={4}>
-      </Col>
+     </Col>
     </Row>
   )
 }
