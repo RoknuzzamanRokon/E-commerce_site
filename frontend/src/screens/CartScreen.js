@@ -3,7 +3,7 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 import { useLocation, Link, useParams, useNavigate} from 'react-router-dom';
 
 
@@ -33,7 +33,6 @@ function CartScreen({ match }) {
 
 
   useEffect(() => {
-    const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     if (productID) {
       dispatch(addToCart(productID, qty))
@@ -51,7 +50,7 @@ function CartScreen({ match }) {
   }, [dispatch]);
 
   const removeFromCartHandler = (id) => {
-    console.log('remove:', id)
+    dispatch(removeFromCart(id))
   }
 
   // const checkoutHandler = () => {
@@ -59,10 +58,10 @@ function CartScreen({ match }) {
 
   // }
 
-  const navigate = useNavigate(); // Replace useHistory with useNavigate
+  const navigate = useNavigate();   
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping'); // Use navigate to redirect
+    navigate('/login?redirect=shipping'); 
   }
 
   return (
@@ -150,4 +149,15 @@ function CartScreen({ match }) {
 }
 
 export default CartScreen
+
+
+
+
+
+
+
+
+
+
+
 
