@@ -47,7 +47,41 @@ function CartScreen({ match }) {
           </Message>
         ) : (
           <ListGroup variant='flash'>
+              {cartItems.map(item => (
+                <ListGroup.Item key={item.product}>
+                  <Row>
+                    <Col md={2}>
+                      <Image src={item.image} alt='item.name' fluid rounded/>
+                    </Col>
 
+                    <Col md={3}>
+                      <Link to={`/product/${item.product}`}> {item.name} </Link>
+                    </Col>
+
+                    <Col md={2}>
+                      ${item.price}
+                    </Col>
+
+{/*                     
+                    <Col xs='auto' className='my-1'>
+                      <Form.Control
+                        as="select"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}  
+                      >
+                        {
+                          [...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))
+                        }
+                      </Form.Control>
+                    </Col> */}
+
+                  </Row>
+                </ListGroup.Item>
+              ))}
           </ListGroup>
         )}
       </Col>
