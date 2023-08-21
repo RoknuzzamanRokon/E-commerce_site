@@ -62,22 +62,22 @@ function CartScreen({ match }) {
                       ${item.price}
                     </Col>
 
-{/*                     
-                    <Col xs='auto' className='my-1'>
+                    
+                    <Col md={3}>
                       <Form.Control
                         as="select"
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}  
+                        value={item.qty}
+                        onChange={(e) => dispatch(addToCart(item.product, e.target.value))}  
                       >
                         {
-                          [...Array(product.countInStock).keys()].map((x) => (
+                          [...Array(item.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
                             </option>
                           ))
                         }
                       </Form.Control>
-                    </Col> */}
+                    </Col>
 
                   </Row>
                 </ListGroup.Item>
