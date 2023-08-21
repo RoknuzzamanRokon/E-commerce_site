@@ -49,15 +49,15 @@ function CartScreen({ match }) {
             Your cart is empty <Link to='/'>Go Back</Link>
           </Message>
         ) : (
-          <ListGroup variant='flash'>
+          <ListGroup className="justify-content-center" variant='flash'>
               {cartItems.map(item => (
                 <ListGroup.Item key={item.product} >
-                  <Row >
+                  <Row>
                     <Col md={2}>
                       <Image src={item.image} alt='item.name' fluid rounded/>
                     </Col>
 
-                    <Col md={3}>
+                    <Col md={3} >
                       <Link to={`/product/${item.product}`}> {item.name} </Link>
                     </Col>
 
@@ -69,7 +69,7 @@ function CartScreen({ match }) {
                       <Form.Control
                         as="select"
                         value={item.qty}
-                        onChange={(e) => dispatch(addToCart(item.product, e.target.value))}  
+                        onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}  
                       >
                         {
                           [...Array(item.countInStock).keys()].map((x) => (
@@ -91,7 +91,6 @@ function CartScreen({ match }) {
 
                       </Button>
                     </Col>
-
                   </Row>
                 </ListGroup.Item>
               ))}
@@ -100,6 +99,13 @@ function CartScreen({ match }) {
         </Col>
 
       <Col md={4}>
+        <Card>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0  )}) items</h2>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
      </Col>
     </Row>
   )
