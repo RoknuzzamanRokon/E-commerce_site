@@ -33,10 +33,22 @@ function CartScreen({ match }) {
 
 
   useEffect(() => {
+    const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems')) || [];
+
     if (productID) {
       dispatch(addToCart(productID, qty))
     }
-  },[dispatch,productID,qty])
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  },[dispatch,productID,qty,cartItems]);
+
+
+  useEffect(() => {
+    const cartItemsFromStorage = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    if (cartItemsFromStorage.length > 0) {
+      dispatch({ type: 'CART_ADD_ITEM_MULTIPLE', payload: cartItemsFromStorage });
+    }
+  }, [dispatch]);
 
   const removeFromCartHandler = (id) => {
     console.log('remove:', id)
