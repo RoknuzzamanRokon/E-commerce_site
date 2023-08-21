@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart } from '../actions/cartActions'
-import { useLocation, Link, useParams } from 'react-router-dom';
+import { useLocation, Link, useParams, useNavigate} from 'react-router-dom';
 
 
 // function CartScreen ({match, Location, history}) {
@@ -15,6 +15,7 @@ import { useLocation, Link, useParams } from 'react-router-dom';
 //   console.log('qty:', qty)
 
 function CartScreen({ match }) {
+  // const history = useHistory();
   const { id } = useParams();
   const productID = id;
   const location = useLocation();
@@ -29,6 +30,8 @@ function CartScreen({ match }) {
   const { cartItems } = cart
   // console.log('cartItems:', cartItems)
 
+
+
   useEffect(() => {
     if (productID) {
       dispatch(addToCart(productID, qty))
@@ -39,6 +42,16 @@ function CartScreen({ match }) {
     console.log('remove:', id)
   }
 
+  // const checkoutHandler = () => {
+  //   history.push('/login?redirect=shipping')
+
+  // }
+
+  const navigate = useNavigate(); // Replace useHistory with useNavigate
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=shipping'); // Use navigate to redirect
+  }
 
   return (
     <Row>
@@ -85,7 +98,7 @@ function CartScreen({ match }) {
                       <Button 
                       type='button' 
                       variant='light'
-                      onClick={removeFromCartHandler(item.product)}>
+                      onClick={()=>removeFromCartHandler(item.product)}>
 
                         <i className='fas fa-trash'> </i>
 
@@ -103,8 +116,21 @@ function CartScreen({ match }) {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0  )}) items</h2>
+              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
           </ListGroup>
+
+          <ListGroup.Item>
+            <Button
+              type='button'
+              className='btn-block'
+              disabled={cartItems.length === 0}
+              onClick={checkoutHandler}
+              >
+                Proceed To Checkout
+
+            </Button>
+          </ListGroup.Item>
         </Card>
      </Col>
     </Row>
@@ -112,6 +138,4 @@ function CartScreen({ match }) {
 }
 
 export default CartScreen
-
-
 
