@@ -10,6 +10,7 @@ class ProductSerializer(serializers.ModelSerializer):
         
         
 class UserSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField(read_only = True)
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'name']
@@ -18,7 +19,6 @@ class UserSerializer(serializers.ModelSerializer):
         name = obj.first_name 
         if name == '':
             name =obj.email
-        
         return name
 
         
