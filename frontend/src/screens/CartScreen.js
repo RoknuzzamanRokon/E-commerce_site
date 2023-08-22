@@ -30,15 +30,18 @@ function CartScreen({ match }) {
   const { cartItems } = cart
   // console.log('cartItems:', cartItems)
 
-
-
   useEffect(() => {
-
     if (productID) {
       dispatch(addToCart(productID, qty))
     }
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  },[dispatch,productID,qty,cartItems]);
+  },[dispatch,productID,qty]);
+
+  
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
 
   useEffect(() => {
@@ -48,6 +51,8 @@ function CartScreen({ match }) {
       dispatch({ type: 'CART_ADD_ITEM_MULTIPLE', payload: cartItemsFromStorage });
     }
   }, [dispatch]);
+
+
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -81,7 +86,7 @@ function CartScreen({ match }) {
                       <Image src={item.image} alt='item.name' fluid rounded/>
                     </Col>
 
-                    <Col md={3} >
+                    <Col md={3}>
                       <Link to={`/product/${item.product}`}> {item.name} </Link>
                     </Col>
 
@@ -125,16 +130,17 @@ function CartScreen({ match }) {
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
+
             <ListGroup.Item>
               <h2>subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0  )}) items</h2>
               ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
             </ListGroup.Item>
           </ListGroup>
 
-          <ListGroup.Item>
+          <ListGroup.Item className="d-flex justify-content-center">
             <Button
               type='button'
-              className='btn-block'
+              className='btn-btn btn-dark btn-sm rounded-1 my-2'
               disabled={cartItems.length === 0}
               onClick={checkoutHandler}
               >

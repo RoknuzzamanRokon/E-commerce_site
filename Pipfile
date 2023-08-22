@@ -11,6 +11,7 @@ django-filter = "*"
 django-cors-headers = "*"
 django-crispy-forms = "*"
 pillow = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
