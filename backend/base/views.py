@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view 
 from rest_framework.response import Response
 
-from .serializer import ProductSerializer, UserSerializer
+from .serializer import ProductSerializer, UserSerializer, UserSerializerWithToken
 from .models import Product
 from .products import products
 
@@ -15,11 +15,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-
         # Add custom claims
-        data['username'] = self.user.username
-        data['email'] = self.user.email
-      
+        # data['username'] = self.user.username
+        # data['email'] = self.user.email
+        serializer = UserSerializerWithToken(self.user).data
+        for k, v in serializer.items():
+            data[k] = v
 
         return data
     

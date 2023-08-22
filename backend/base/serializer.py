@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -33,6 +33,13 @@ class UserSerializer(serializers.ModelSerializer):
 
         
         
+class UserSerializerWithToken(UserSerializer):
+    token = serializers.SerializerMethodField(read_only = True)
+    class Meta:
+        model = User
+        fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin', 'token']
         
-        
+    def get_token(self, obj):
+        token = RefreshToken.for_user(obj)
+        return str(token.access_token)
         
