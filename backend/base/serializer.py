@@ -12,4 +12,17 @@ class ProductSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id', 'username', 'email']
+        
+    def get_name(self,obj):
+        name = obj.first_name 
+        if name == '':
+            name =obj.email
+        
+        return name
+
+        
+        
+        
+        
+        

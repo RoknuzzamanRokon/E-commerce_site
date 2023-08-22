@@ -49,7 +49,7 @@ def getRoutes(request):
 @api_view(['GET'])
 def getUserProfile(request):
     user = request.user
-    serializer = UserSerializer(products, many=False)
+    serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
     
     
