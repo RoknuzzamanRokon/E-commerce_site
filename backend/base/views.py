@@ -15,7 +15,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 
 from django.contrib.auth.hashers import make_password
-from django_restframework import status
+from rest_framework import status
 
 
 # Create your views here.
