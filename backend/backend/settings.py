@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     
     'base.apps.BaseConfig',
     
-    
+    # 'base',
     'rest_framework',
     'corsheaders',
 ]
