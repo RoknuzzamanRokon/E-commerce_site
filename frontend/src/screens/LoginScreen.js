@@ -12,7 +12,9 @@ function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
   return (
-    <div>Login Screen</div>
+    <div>
+        Login Screen
+    </div>
   )
 }
 
