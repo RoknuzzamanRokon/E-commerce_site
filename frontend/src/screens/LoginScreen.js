@@ -12,6 +12,13 @@ import { login } from '../actions/userActions'
 function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const submitHandler = (e) => {
+      e.preventDefault()
+      console.log('submit')
+    };
+
+
   return (
     <FormContainer>
         <h1>Sign In</h1>
@@ -35,7 +42,7 @@ function LoginScreen() {
               type='password'
               placeholder='Enter password'
               value={password}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             >
             </Form.Control>
           </Form.Group>
@@ -43,7 +50,7 @@ function LoginScreen() {
           <Button type='submit' variant='primary'>
             Sign In
           </Button>
-          
+
         </Form>
     </FormContainer>
   )
