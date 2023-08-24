@@ -14,7 +14,22 @@ function LoginScreen() {
     const [password, setPassword] = useState('')
   return (
     <FormContainer>
-        Login Screen
+        <h1>Sign In</h1>
+
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId='email'>
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type='email'
+              placeholder='Enter email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            >
+
+            </Form.Control>
+          </Form.Group>
+
+        </Form>
     </FormContainer>
   )
 }
