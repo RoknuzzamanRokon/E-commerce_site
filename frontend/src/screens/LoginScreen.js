@@ -9,7 +9,7 @@ import { login } from '../actions/userActions'
 
 
 
-function LoginScreen() {
+function LoginScreen({Location, history}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -17,14 +17,14 @@ function LoginScreen() {
 
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
-    const useLogin = useSelector(state => state.userLogin)
-    const { error, loading, userInfo} = userLogin
+    const userLogin = useSelector(state => state.userLogin)
+    const { error, loading, userInfo} = userLogin 
 
     useEffect(() => {
       if (userInfo) {
-        history.push(redirect)
+        history.push(redirect)  
       }
-    }, [history, userInfo,redirect])
+    }, [history, userInfo, redirect])
 
     const submitHandler = (e) => {
       e.preventDefault()
@@ -35,6 +35,8 @@ function LoginScreen() {
   return (
     <FormContainer>
         <h1>Sign In</h1>
+        {error && <Message variant='danger'> {error}</Message>}
+        {loading && <Loader/> }
         <Form onSubmit={submitHandler}>
 
 
