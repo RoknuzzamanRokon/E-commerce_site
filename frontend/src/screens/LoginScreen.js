@@ -15,6 +15,15 @@ function LoginScreen() {
 
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
+    const useLogin = useSelector(state => state.userLogin)
+    const { error, loading, userInfo} = userLogin
+
+    userEffect(() => {
+      if (userInfo) {
+        history.push(redirect)
+      }
+    }, [history, userInfo,redirect])
+
     const submitHandler = (e) => {
       e.preventDefault()
       console.log('submit')
