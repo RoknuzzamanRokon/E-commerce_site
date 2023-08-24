@@ -1,7 +1,8 @@
 import React from 'react';
 import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { logout } from '../actions/userActions'
 
 
 function Header() {
@@ -9,8 +10,10 @@ function Header() {
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
   
+  const dispatch = useDispatch()
+
   const logoutHandler = () =>{
-    console.log('something')
+    dispatch(logout())
   }
 
 
