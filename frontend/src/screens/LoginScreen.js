@@ -13,6 +13,8 @@ function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const redirect = Location.search ? Location.search.split('=')[1] : '/'
+
     const submitHandler = (e) => {
       e.preventDefault()
       console.log('submit')
