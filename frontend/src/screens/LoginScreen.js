@@ -13,12 +13,14 @@ function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch = useDispatch()
+
     const redirect = Location.search ? Location.search.split('=')[1] : '/'
 
     const useLogin = useSelector(state => state.userLogin)
     const { error, loading, userInfo} = userLogin
 
-    userEffect(() => {
+    useEffect(() => {
       if (userInfo) {
         history.push(redirect)
       }
@@ -26,7 +28,7 @@ function LoginScreen() {
 
     const submitHandler = (e) => {
       e.preventDefault()
-      console.log('submit')
+      dispatch(login(email, password))
     };
 
 
