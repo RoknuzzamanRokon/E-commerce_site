@@ -41,7 +41,7 @@ const store = configureStore({
     productList: productListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
-    userLogin:userLoginReducer,
+    userLogin: userLoginReducer,
   },
   
     initialState,
