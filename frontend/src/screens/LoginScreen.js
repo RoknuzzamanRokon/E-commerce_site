@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button, Row, Col } from 'react-bootstrap'  
 import Loader from '../components/Loader'
@@ -25,7 +25,7 @@ function LoginScreen() {
         <Form onSubmit={submitHandler}>
 
 
-          <Form.Group controlId='email'>
+          <Form.Group className='py-3' controlId='email'>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type='email'
@@ -36,7 +36,7 @@ function LoginScreen() {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group controlId='password'>
+          <Form.Group className='py-3' controlId='password'>
             <Form.Label>Password</Form.Label>
             <Form.Control
               type='password'
@@ -52,6 +52,17 @@ function LoginScreen() {
           </Button>
 
         </Form>
+
+        <Row className='py-3'>
+          <Col>
+            New Customer? 
+            <Link 
+              to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+
+              Register
+            </Link>
+          </Col>
+        </Row>
     </FormContainer>
   )
 }
