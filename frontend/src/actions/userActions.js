@@ -18,7 +18,7 @@ import {
         }
 
         const { data } = await axios.post(
-            '/api/user/login/'
+            '/api/user/login/',
             {'username': email, 'password': password},
             config
             )
