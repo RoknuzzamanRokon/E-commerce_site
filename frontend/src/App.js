@@ -17,12 +17,12 @@ function App() {
       <Header/>
       <main className='py-2'>
         <Container>
-         <Routes>
-            <Route path='/' Component={HomeScreen} exact />
-            <Route path='/login' Component={LoginScreen}  />
-            <Route path='/product/:id' Component={ProductScreen} />
-            <Route path='/cart/:id' Component={CartScreen} />
-            <Route path='/cart' Component={CartScreen} />
+        <Routes>
+            <Route path='/' element={<HomeScreen />} />
+            <Route path='/login' element={<LoginScreen />} />
+            <Route path='/product/:id' element={<ProductScreen />} />
+            <Route path='/cart/:id' element={<CartScreen />} />
+            <Route path='/cart' element={<CartScreen />} />
           </Routes>
         </Container>   
       </main>

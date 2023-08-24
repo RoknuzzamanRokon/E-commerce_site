@@ -25,8 +25,8 @@ import {
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,
-            payload: error.response && error.response.data.details
-                ? error.response.data.details
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
                 : error.message,
         })
     }
@@ -47,8 +47,8 @@ import {
     } catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
-            payload: error.response && error.response.data.details
-                ? error.response.data.details
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
                 : error.message,
         })
     }
