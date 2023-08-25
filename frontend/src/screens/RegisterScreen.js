@@ -61,6 +61,7 @@ function RegisterScreen({location, history}) {
           <Form.Group className='py-3' controlId='email'>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
+              required
               type='email'
               placeholder='Enter Email'
               value={email}
@@ -71,6 +72,7 @@ function RegisterScreen({location, history}) {
           <Form.Group className='py-3' controlId='password'>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type='password'
               placeholder='Enter Password'
               value={password}
@@ -81,6 +83,7 @@ function RegisterScreen({location, history}) {
           <Form.Group className='py-3' controlId='passwordConfirm'>
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
+              required
               type='password'
               placeholder='Confirm Password'
               value={passwordConfirm}
