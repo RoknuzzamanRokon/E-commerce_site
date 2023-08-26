@@ -1,28 +1,18 @@
 import React, {useEffect} from 'react'
-// import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
-import { useLocation, Link, useParams, useNavigate} from 'react-router-dom';
+import { useLocation, Link, useParams, useNavigate, userInfo} from 'react-router-dom';
 
-
-// function CartScreen ({match, Location, history}) {
-//   const { id } = useParams();
-//   const productID = id
-//   // const qty = new URLSearchParams(location.search).get('qty'); 
-//   const qty = Location.search
-//   console.log('qty:', qty)
 
 function CartScreen({ match }) {
-  // const history = useHistory();
   const { id } = useParams();
   const productID = id;
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const qty = searchParams.get('qty');
 
-  // console.log('qty:', qty);
 
   const dispatch = useDispatch()
 
@@ -64,10 +54,14 @@ function CartScreen({ match }) {
   // }
 
   const navigate = useNavigate();   
-
+  const userInfo = useSelector(state => state.userLogin.userInfo);
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping'); 
-  }
+    if (userInfo) {
+      navigate('/shipping');
+    } else {
+      navigate('/login', { state: { redirect: '/shipping' } });
+    }
+  };
 
   return (
     <Row>
@@ -155,15 +149,6 @@ function CartScreen({ match }) {
 }
 
 export default CartScreen
-
-
-
-
-
-
-
-
-
 
 
 
