@@ -14,6 +14,7 @@ import {
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
+    USER_DETAILS_RESET,
 
     
     USER_UPDATE_PROFILE_REQUEST,
@@ -58,6 +59,7 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({ type: USER_LOGOUT})
+    dispatch({ type: USER_DETAILS_RESET })
 }
 
 
@@ -172,7 +174,7 @@ export const updateUserProfile = ( user ) => async (dispatch, getState ) => {
                     type: USER_LOGIN_SUCCESS,
                     payload: data
                 })
-                
+
                 localStorage.setItem('userInfo', JSON.stringify(data))
 
         } 
