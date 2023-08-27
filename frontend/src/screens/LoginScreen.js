@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'  
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
@@ -20,18 +20,36 @@ function LoginScreen({location, history}) {
     const userLogin = useSelector(state => state.userLogin)
     const { error, loading, userInfo} = userLogin 
 
+    const navigate = useNavigate();
+
+
+    // useEffect(() => {
+    //   if (userInfo) {
+    //     history?.push(redirect)
+    //   }
+    // }, [history, userInfo, redirect])
+    
     useEffect(() => {
       if (userInfo) {
-        history?.push(redirect)
+        // history?.push('/shipping'); // Redirect to "/shipping" after successful login
+        navigate('/shipping')
       }
-    }, [history, userInfo, redirect])
+    }, [history, userInfo]);
 
     const submitHandler = (e) => {
       e.preventDefault()
       dispatch(login(email, password))
     }
 
+    // const checkoutHandler = () => {
+    //   if (userInfo) {
+    //     navigate('/shipping');
+    //   } else {
+    //     navigate('/login', { state: { redirect: '/shipping' } });
+    //   }
+    // };
 
+    
   return (
     <FormContainer>
         <h1>Sign In</h1>
