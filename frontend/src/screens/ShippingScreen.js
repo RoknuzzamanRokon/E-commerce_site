@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import { saveShippingAddress } from '../actions/cartActions'
+import { useNavigate  } from 'react-router-dom';
 
-function ShippingScreen({ history }) {
+
+function ShippingScreen( ) {
 
     const cart = useSelector(state => state.cart)
     const { shippingAddress } = cart
 
     const dispatch = useDispatch()
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [postalCode, setPostalCode] = useState('')
-    const [country, setCountry] = useState('')
+    const [address, setAddress] = useState(shippingAddress.address)
+    const [city, setCity] = useState(shippingAddress.city)
+    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+    const [country, setCountry] = useState(shippingAddress.setAddress)
 
+
+    const navigate = useNavigate();
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log('submitted')
-    //     dispatch(saveShippingAddress({ address, city, postalCode, country }))
-    //     history.push('/payment')
+        
+        dispatch(saveShippingAddress({ address, city, postalCode, country }));
+        navigate('/payment');
+          
     }
+
 
     return (
         <FormContainer>
@@ -76,7 +82,7 @@ function ShippingScreen({ history }) {
                     </Form.Control>
                 </Form.Group>
 
-                <Button className='my-3' type='submit' variant='primary'>
+                <Button className='my-3' type='submit' variant='primary' >
                     Submit
                 </Button>
             </Form>
