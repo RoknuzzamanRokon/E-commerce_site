@@ -19,7 +19,7 @@ function CartScreen({ match }) {
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart
   // console.log('cartItems:', cartItems)
-
+  
   useEffect(() => {
     if (productID) {
       dispatch(addToCart(productID, qty))
@@ -41,6 +41,8 @@ function CartScreen({ match }) {
       dispatch({ type: 'CART_ADD_ITEM_MULTIPLE', payload: cartItemsFromStorage });
     }
   }, [dispatch]);
+
+  
 
 
 
