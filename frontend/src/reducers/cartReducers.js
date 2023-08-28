@@ -6,9 +6,9 @@ import { CART_ADD_ITEM,
         } from '../constants/cartConstants'
 
 
-const initialState = {
-    cartItems: [],
-  };
+// const initialState = {
+//     paymentMethod: 'PayPal',
+//   };
 
 export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, action) => {
     switch (action.type){
@@ -47,7 +47,7 @@ export const cartReducer = (state = { cartItems: [], shippingAddress: {} }, acti
             case CART_SAVE_PAYMENT_METHOD:
                 return{
                     ...state,
-                    shippingAddress: action.payload
+                    paymentMethod: action.payload
                 }
             default:
             return state; 
