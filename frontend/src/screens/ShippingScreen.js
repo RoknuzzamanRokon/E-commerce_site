@@ -21,9 +21,9 @@ function ShippingScreen( ) {
 
 
     const navigate = useNavigate();
+
     const submitHandler = (e) => {
         e.preventDefault()
-        
         dispatch(saveShippingAddress({ address, city, postalCode, country }));
         navigate('/payment');
           
@@ -32,7 +32,7 @@ function ShippingScreen( ) {
 
     return (
         <FormContainer>
-            <CheckoutStep step1 step2 step3 step4/>
+            <CheckoutStep step1 step2/>
             <h1>Shipping Address</h1>
             <Form onSubmit={submitHandler}>
 
