@@ -6,7 +6,7 @@ function Footer() {
     <Container style={{ marginTop: '20px' }}>
       <Row>
         <Col className='text-center'>
-        Copyright &copy; ProShop
+        Copyright &copy; RokoShop
         </Col>
       </Row>
     </Container>

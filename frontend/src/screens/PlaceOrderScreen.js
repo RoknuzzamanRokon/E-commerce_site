@@ -17,7 +17,7 @@ function PlaceOrderScreen({history}) {
     const cart = useSelector(state => state.cart)
 
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
-    cart.shippingPrice = (cart.itemsPrice > 100 ? 0 : 10).toFixed(2)
+    cart.shippingPrice = (cart.itemsPrice > 100 ? 100 : 0).toFixed(2)
     cart.taxPrice = Number((0.082) * cart.itemsPrice).toFixed(2)
 
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
@@ -89,8 +89,8 @@ function PlaceOrderScreen({history}) {
                                                 <Image src={item.image} alt={item.name} fluid rounded/>
                                             </Col>
 
-                                            <Col>
-                                                <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                            <Col className='text-style' >
+                                                <Link  to={`/product/${item.product}`}>{item.name}</Link>
                                             </Col>
 
                                             <Col md={4}>
