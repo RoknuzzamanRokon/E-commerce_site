@@ -20,6 +20,8 @@ def addOrderItem(request):
     if orderItem and len('orderItems') == 0:
         return Response({'detail': 'No Order Items'}, status = status.HTTP_400_BAD_REQUEST)
     else:
+        
+        
        # (1) Create order
 
        order = Order.Objects.create(
