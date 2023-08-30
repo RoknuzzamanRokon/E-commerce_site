@@ -22,17 +22,29 @@ def addOrderItem(request):
     else:
         
         
-       # (1) Create order
+       # (1) Create Order
 
        order = Order.Objects.create(
            user = user,
            paymentMethod=data['paymentMethod'],
            taxPrice=data['taxPrice'],
            ShippingPrice=data['shippingPrice'],
-           totalPrice=data['totalPrice']
+           totalPrice=data['totalPrice'],
 
        )
-    
+
+        #(2) Shipping Address.    
+        
+        shipping = ShippingAddress.Objects.create(
+            order=order,
+            address=data['shippingAddress']['address'],
+            city=data['shippingAddress']['city'],
+            postalCode=data['shippingAddress']['postalCode'],
+            country=data['shippingAddress']['country']
+            
+        )
+        
+        
     return Response('ORDER')
 
 
