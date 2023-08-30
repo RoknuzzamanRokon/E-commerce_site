@@ -23,8 +23,7 @@ def addOrderItem(request):
         
         
        # (1) Create Order
-
-       order = Order.Objects.create(
+        order = Order.Objects.create(
            user = user,
            paymentMethod=data['paymentMethod'],
            taxPrice=data['taxPrice'],
@@ -33,8 +32,7 @@ def addOrderItem(request):
 
        )
 
-        #(2) Shipping Address.    
-        
+        # (2) Shipping Address.         
         shipping = ShippingAddress.Objects.create(
             order=order,
             address=data['shippingAddress']['address'],
@@ -44,6 +42,21 @@ def addOrderItem(request):
             
         )
         
+        # (3) Create order items adn set order to orderItem relationship.
+        for i in orderItem:
+            product = Product.objects.get(_id=i['product'])
+
+            item = OrderItem.object.create(
+                product=product,
+                order=order,
+                name=product.name,
+                qty=i['qty'],
+                price=i['price'],
+                image=product.image.url,
+            )
+            # (4) update stock.
+            product.countInStock -= item.qty
+            product.save()
         
     return Response('ORDER')
 
