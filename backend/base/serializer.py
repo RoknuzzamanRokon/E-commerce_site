@@ -82,7 +82,7 @@ class OrderSerializer(serializers.ModelSerializer):
             address = False
         return address
     
-    def get_orders(self, obj):
+    def get_user(self, obj):
         user = obj.user
         serializer = UserSerializer (user, many=False)
         return serializer.data
