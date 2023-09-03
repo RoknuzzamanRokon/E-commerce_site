@@ -3,7 +3,7 @@ from base.views import order_views as views
 
 
 urlpatterns = [
-    path('add/', views.addOrderItem, name='order-add'),
+    path('add/', views.addOrderItems, name='order-add'),
     
 ]
 
