@@ -12,6 +12,7 @@ django-cors-headers = "*"
 django-crispy-forms = "*"
 pillow = "*"
 djangorestframework-simplejwt = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
