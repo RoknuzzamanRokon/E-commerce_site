@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutStep from '../components/CheckoutStep'
 import { createOrder } from '../actions/orderActions'
-// import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { useNavigate  } from 'react-router-dom';    
 
 
@@ -36,11 +36,11 @@ function PlaceOrderScreen() {
             
 
             navigate(`/order/${order._id}`);
-            // dispatch({ type: ORDER_CREATE_RESET })
+            dispatch({ type: ORDER_CREATE_RESET })
         }
-        else{
-            navigate('/placeorder')
-        }
+        // else{
+        //     navigate('/placeorder')
+        // }
     }, [success, order, navigate])
 
     const placeOrder = () => {
