@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutStep from '../components/CheckoutStep'
-import { createOrder } from '../actions/orderActions'
+import { createOrder, getOrderDetails } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 import { useNavigate  } from 'react-router-dom';    
 
