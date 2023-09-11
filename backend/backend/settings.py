@@ -54,6 +54,8 @@ REST_FRAMEWORK = {
 
 from datetime import timedelta
 
+MY_P = 'Rokon559445689'
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
@@ -136,13 +138,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'Rokon559445689',
+        'PASSWORD': MY_P,
         'HOST': 'localhost',
         'PORT': '5432',
     }
